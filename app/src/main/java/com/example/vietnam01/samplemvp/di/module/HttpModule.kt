@@ -1,7 +1,5 @@
 package com.example.vietnam01.samplemvp.di.module
 
-import com.example.vietnam01.samplemvp.di.qualifier.AwsUrl
-import com.example.vietnam01.samplemvp.di.qualifier.RenosyUrl
 import com.example.vietnam01.samplemvp.model.http.api.RenosyApis
 import com.example.vietnam01.samplemvp.model.http.api.AwsApis
 import com.google.gson.Gson
@@ -13,6 +11,7 @@ import javax.inject.Singleton
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import java.util.concurrent.TimeUnit
+import javax.inject.Named
 
 @Module
 class HttpModule {
@@ -29,32 +28,33 @@ class HttpModule {
     return Gson()
   }
 
-
   @Singleton
   @Provides
   fun provideOkHttpBuilder(): OkHttpClient.Builder {
     return OkHttpClient.Builder()
   }
 
-  @RenosyUrl
   @Singleton
   @Provides
+  @Named(RenosyApis.TAG)
   fun provideRenosyRetrofit(builder: Retrofit.Builder, client: OkHttpClient): Retrofit = createRetrofit(builder, client, RenosyApis.BASE_URL)
 
-  @AwsUrl
   @Singleton
   @Provides
+  @Named(AwsApis.TAG)
   fun provideAwsRetrofit(builder: Retrofit.Builder, client: OkHttpClient): Retrofit = createRetrofit(builder, client, AwsApis.BASE_URL)
 
   @Singleton
   @Provides
-  fun provideRenosyService(retrofit: Retrofit): RenosyApis {
+  @Named(RenosyApis.TAG)
+  fun provideRenosyService(@Named(RenosyApis.TAG) retrofit: Retrofit): RenosyApis {
     return retrofit.create(RenosyApis::class.java)
   }
 
   @Singleton
   @Provides
-  fun provideAwsService(retrofit: Retrofit): AwsApis {
+  @Named(AwsApis.TAG)
+  fun provideAwsService(@Named(AwsApis.TAG) retrofit: Retrofit): AwsApis {
     return retrofit.create(AwsApis::class.java)
   }
 

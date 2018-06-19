@@ -10,6 +10,7 @@ import retrofit2.http.POST
 /* Renosy APIs related */
 interface RenosyApis {
   companion object {
+    const val TAG = "RenosyApis"
     const val BASE_URL = "http://aaaa"
   }
 

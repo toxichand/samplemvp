@@ -11,7 +11,7 @@ import javax.inject.Inject
 import com.google.gson.JsonObject
 import javax.inject.Named
 
-class RetrofitHelper @Inject constructor (var renosyApiService: RenosyApis, var awsApiService: AwsApis) : HttpHelper {
+class RetrofitHelper @Inject constructor ( @Named(RenosyApis.TAG) var renosyApiService: RenosyApis, @Named(AwsApis.TAG) var awsApiService: AwsApis) : HttpHelper {
 
   override fun registerUser(name: String, password: String, fullName: String): Observable<BaseRespond<User>> {
     val params = JsonObject()
