@@ -1,7 +1,9 @@
 package com.example.vietnam01.samplemvp.di.module
 
-import com.example.vietnam01.samplemvp.model.http.api.RenosyApis
-import com.example.vietnam01.samplemvp.model.http.api.AwsApis
+import com.example.vietnam01.samplemvp.app.Constant
+import com.example.vietnam01.samplemvp.model.http.api.NewApis
+import com.example.vietnam01.samplemvp.model.http.api.PhotoApis
+import com.example.vietnam01.samplemvp.model.http.api.UserApis
 import com.google.gson.Gson
 import dagger.Module
 import dagger.Provides
@@ -10,6 +12,7 @@ import retrofit2.Retrofit
 import javax.inject.Singleton
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Named
 
@@ -36,26 +39,33 @@ class HttpModule {
 
   @Singleton
   @Provides
-  @Named(RenosyApis.TAG)
-  fun provideRenosyRetrofit(builder: Retrofit.Builder, client: OkHttpClient): Retrofit = createRetrofit(builder, client, RenosyApis.BASE_URL)
+  @Named(Constant.Host.RENOSY)
+  fun provideRenosyRetrofit(builder: Retrofit.Builder, client: OkHttpClient): Retrofit = createRetrofit(builder, client, Constant.BaseURL.RENOSY.URL)
 
   @Singleton
   @Provides
-  @Named(AwsApis.TAG)
-  fun provideAwsRetrofit(builder: Retrofit.Builder, client: OkHttpClient): Retrofit = createRetrofit(builder, client, AwsApis.BASE_URL)
+  @Named(Constant.Host.AWS)
+  fun provideAwsRetrofit(builder: Retrofit.Builder, client: OkHttpClient): Retrofit = createRetrofit(builder, client, Constant.BaseURL.AWS.URL)
 
   @Singleton
   @Provides
-  @Named(RenosyApis.TAG)
-  fun provideRenosyService(@Named(RenosyApis.TAG) retrofit: Retrofit): RenosyApis {
-    return retrofit.create(RenosyApis::class.java)
+  @Named(NewApis.NAME)
+  fun provideRenosyService(@Named(Constant.Host.RENOSY) retrofit: Retrofit): NewApis {
+    return retrofit.create(NewApis::class.java)
   }
 
   @Singleton
   @Provides
-  @Named(AwsApis.TAG)
-  fun provideAwsService(@Named(AwsApis.TAG) retrofit: Retrofit): AwsApis {
-    return retrofit.create(AwsApis::class.java)
+  @Named(UserApis.NAME)
+  fun provideUserService(@Named(Constant.Host.RENOSY) retrofit: Retrofit): UserApis {
+    return retrofit.create(UserApis::class.java)
+  }
+
+  @Singleton
+  @Provides
+  @Named(PhotoApis.NAME)
+  fun provideAwsService(@Named(Constant.Host.AWS) retrofit: Retrofit): PhotoApis {
+    return retrofit.create(PhotoApis::class.java)
   }
 
   @Singleton
@@ -74,6 +84,7 @@ class HttpModule {
         .baseUrl(url)
         .client(client)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .build()
   }

@@ -1,23 +1,33 @@
 package com.example.vietnam01.samplemvp.model.http
 
-import com.example.vietnam01.samplemvp.di.qualifier.AwsUrl
-import com.example.vietnam01.samplemvp.di.qualifier.RenosyUrl
-import com.example.vietnam01.samplemvp.model.http.api.AwsApis
-import com.example.vietnam01.samplemvp.model.http.api.RenosyApis
+import com.example.vietnam01.samplemvp.model.http.api.PhotoApis
+import com.example.vietnam01.samplemvp.model.http.api.NewApis
+import com.example.vietnam01.samplemvp.model.http.api.UserApis
+import com.example.vietnam01.samplemvp.model.http.model.News
+import com.example.vietnam01.samplemvp.model.http.model.Photo
 import com.example.vietnam01.samplemvp.model.http.model.User
-import com.example.vietnam01.samplemvp.model.http.response.BaseRespond
 import io.reactivex.Observable
 import javax.inject.Inject
-import com.google.gson.JsonObject
+import retrofit2.Response
 import javax.inject.Named
 
-class RetrofitHelper @Inject constructor ( @Named(RenosyApis.TAG) var renosyApiService: RenosyApis, @Named(AwsApis.TAG) var awsApiService: AwsApis) : HttpHelper {
+class RetrofitHelper @Inject constructor (@Named(NewApis.NAME) var newApiService: NewApis,
+                                          @Named(UserApis.NAME) var userApiService: UserApis,
+                                          @Named(PhotoApis.NAME) var photoApiService: PhotoApis) : HttpHelper {
 
-  override fun registerUser(name: String, password: String, fullName: String): Observable<BaseRespond<User>> {
-    val params = JsonObject()
-    params.addProperty("name", name)
-    params.addProperty("password", password)
-    params.addProperty("fullName", fullName)
-    return renosyApiService.registerUser(params)
+  override fun fetchUser(): Observable<Response<User>> {
+    return userApiService.fetchUser()
+  }
+
+  override fun fetchNews(): Observable<Response<News>> {
+    return newApiService.fetchNews()
+  }
+
+  override fun downloadPhoto(): Observable<Response<Photo>> {
+    return photoApiService.downloadPhoto()
+  }
+
+  override fun uploadPhoto(photo: Photo): Observable<Response<Photo>> {
+    return photoApiService.uploadPhoto(photo)
   }
 }
