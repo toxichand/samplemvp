@@ -8,16 +8,12 @@ import com.google.gson.Gson
 import javax.inject.Inject
 import android.text.TextUtils
 
-
-class PreferencesHelperImpl @Inject constructor() : PreferencesHelper {
+class PreferencesHelperImpl @Inject constructor(private var gson: Gson) : PreferencesHelper {
 
   private val sPrefs: SharedPreferences
 
-  private lateinit var gson: Gson
-
   init {
     sPrefs = App.instance.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
-    gson = Gson()
   }
 
   override fun saveUser(user: User) {
@@ -25,7 +21,7 @@ class PreferencesHelperImpl @Inject constructor() : PreferencesHelper {
     sPrefs.edit().putString(SP_USER, userString).apply()
   }
 
-  override fun getUser(): User? {
+  override fun restoreUser(): User? {
     val userData = sPrefs.getString(SP_USER, DEFAULT_STRING)
     return if (TextUtils.isEmpty(userData)) {
       null

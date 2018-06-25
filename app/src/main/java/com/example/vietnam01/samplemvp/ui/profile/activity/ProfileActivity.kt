@@ -1,15 +1,12 @@
-package com.example.vietnam01.samplemvp.ui.profile
+package com.example.vietnam01.samplemvp.ui.profile.activity
 
-import android.util.Log
 import android.widget.TextView
 import butterknife.BindView
 import com.example.vietnam01.samplemvp.R
 import com.example.vietnam01.samplemvp.base.BaseActivity
 import com.example.vietnam01.samplemvp.base.contact.profile.ProfileContact
-import com.example.vietnam01.samplemvp.model.DataManager
 import com.example.vietnam01.samplemvp.model.http.model.User
 import com.example.vietnam01.samplemvp.presenter.profile.ProfilePresenter
-import javax.inject.Inject
 
 class ProfileActivity: BaseActivity<ProfileContact.View, ProfilePresenter>(), ProfileContact.View {
 
@@ -36,6 +33,5 @@ class ProfileActivity: BaseActivity<ProfileContact.View, ProfilePresenter>(), Pr
     tvFirsName.text = user.firstName
     tvLastName.text = user.lastName
     tvAge.text = user.age.toString()
-
   }
 }

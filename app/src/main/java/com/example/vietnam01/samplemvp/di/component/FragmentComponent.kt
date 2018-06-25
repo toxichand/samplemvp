@@ -1,6 +1,5 @@
 package com.example.vietnam01.samplemvp.di.component
 
-import android.app.Activity
 import android.support.v4.app.Fragment
 import com.example.vietnam01.samplemvp.di.module.FragmentModule
 import com.example.vietnam01.samplemvp.di.scope.FragmentScope

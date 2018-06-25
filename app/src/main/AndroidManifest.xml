@@ -18,7 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.profile.ProfileActivity"
+        <activity android:name=".ui.profile.activity.ProfileActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.news.activity.NewsActivity"
             android:screenOrientation="portrait"/>

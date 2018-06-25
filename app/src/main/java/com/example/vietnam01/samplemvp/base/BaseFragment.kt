@@ -2,7 +2,6 @@ package com.example.vietnam01.samplemvp.base
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewGroup
 import com.example.vietnam01.samplemvp.app.App
 import com.example.vietnam01.samplemvp.di.component.DaggerFragmentComponent
 import com.example.vietnam01.samplemvp.di.component.FragmentComponent

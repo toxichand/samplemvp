@@ -4,7 +4,7 @@ import android.app.Activity
 import com.example.vietnam01.samplemvp.di.module.ActivityModule
 import com.example.vietnam01.samplemvp.di.scope.ActivityScope
 import com.example.vietnam01.samplemvp.ui.news.activity.NewsActivity
-import com.example.vietnam01.samplemvp.ui.profile.ProfileActivity
+import com.example.vietnam01.samplemvp.ui.profile.activity.ProfileActivity
 import dagger.Component
 
 @ActivityScope

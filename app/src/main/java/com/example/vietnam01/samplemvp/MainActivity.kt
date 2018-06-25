@@ -5,7 +5,7 @@ import android.view.View
 import butterknife.OnClick
 import com.example.vietnam01.samplemvp.base.SimpleActivity
 import com.example.vietnam01.samplemvp.ui.news.activity.NewsActivity
-import com.example.vietnam01.samplemvp.ui.profile.ProfileActivity
+import com.example.vietnam01.samplemvp.ui.profile.activity.ProfileActivity
 
 class MainActivity : SimpleActivity() {
 

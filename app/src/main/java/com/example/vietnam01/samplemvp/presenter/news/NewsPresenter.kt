@@ -3,7 +3,6 @@ package com.example.vietnam01.samplemvp.presenter.news
 import android.util.Log
 import com.example.vietnam01.samplemvp.base.RxPresenter
 import com.example.vietnam01.samplemvp.base.contact.news.NewsContact
-import com.example.vietnam01.samplemvp.base.contact.profile.ProfileContact
 import com.example.vietnam01.samplemvp.model.DataManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
